@@ -19,7 +19,7 @@ export const COL_DEFS: ColDef<TreeRow>[] = [
     width: 90,
     minWidth: 90,
   },
-  { 
+  {
     field: 'label',
     headerName: 'Наименование'
   },

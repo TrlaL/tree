@@ -1,4 +1,4 @@
-import Api from '../classes/Api.ts';
+import Api from '../classes/Api';
 
 export default class TreeApi {
   private readonly api: Api;

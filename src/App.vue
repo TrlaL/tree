@@ -1,7 +1,7 @@
 <template>
   <main class="app">
-    <section class="app__wrapper">
-      <section
+    <div class="app__wrapper">
+      <div
         v-if="error"
         class="app__error"
       >
@@ -14,7 +14,7 @@
           @click="getItems">
           Повторить
         </button>
-      </section>
+      </div>
       <ag-grid-vue
         :auto-group-column-def="autoGroupColumnDef"
         :default-col-def="defaultColDef"
@@ -25,19 +25,20 @@
         :get-row-id="getRowId"
         :group-default-expanded="groupDefaultExpanded"
         :loading="loading"
+        :suppress-group-rows-sticky="suppressGroupRowsSticky"
         class="app__grid"
       />
-    </section>
+    </div>
   </main>
 </template>
 
 <script lang="ts">
-  import TreeApi from './api/TreeApi.ts';
-  import TreeStore from './classes/TreeStore.ts';
+  import TreeApi from './api/TreeApi';
+  import TreeStore from './classes/TreeStore';
   import { defineComponent, markRaw } from 'vue';
   import { AgGridVue } from 'ag-grid-vue3';
-  import { AUTO_GROUP_COLUMN_DEF, COL_DEFS, DEFAULT_COL_DEF } from './constants/grid.ts';
-  import type { TreeItem, TreeRow } from './types/tree.ts';
+  import { AUTO_GROUP_COLUMN_DEF, COL_DEFS, DEFAULT_COL_DEF } from './constants/grid';
+  import type { TreeItem, TreeRow } from './types/tree';
   import type { GetRowIdParams } from 'ag-grid-community';
 
   export default defineComponent({
@@ -55,8 +56,9 @@
         rowData: [] as TreeRow[],
         autoGroupColumnDef: AUTO_GROUP_COLUMN_DEF,
         defaultColDef: DEFAULT_COL_DEF,
-        colDefs: COL_DEFS
-      }
+        colDefs: COL_DEFS,
+        suppressGroupRowsSticky: true
+      };
     },
 
     mounted () {
@@ -97,13 +99,10 @@
         }));
       }
     }
-  })
+  });
 </script>
 
 <style lang="scss">
-  @import 'reset-css/reset.css';
-  @import './styles/app.scss';
-
   .app {
     background-color: #EEE;
     font-family: Arial;

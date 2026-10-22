@@ -1,9 +1,15 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+// core
+import { createApp } from 'vue';
+import App from './App.vue';
+
+// ag-grid
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { AllEnterpriseModule } from 'ag-grid-enterprise';
 
-// Register all Community features
+// styles
+import 'reset-css/reset.css';
+import './styles/app.scss';
+
 ModuleRegistry.registerModules([AllCommunityModule, AllEnterpriseModule]);
 
 const app = createApp(App);
